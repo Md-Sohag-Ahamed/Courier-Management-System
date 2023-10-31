@@ -1,0 +1,155 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="AreaInfo">
+    <Key>
+      <PropertyRef Name="aAreaName" />
+    </Key>
+    <Property Name="aAreaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="aAreaName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="aCost" Type="Double" />
+  </EntityType>
+  <EntityType Name="booking">
+    <Key>
+      <PropertyRef Name="bID" />
+    </Key>
+    <Property Name="bID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="bOriginFirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="bOriginLastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="bOriginAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="bOriginPhoneNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="bDestFirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="bDestLastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="bDestAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="bDestPhoneNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="bWeight" Type="Double" />
+    <Property Name="bDescription" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="bTye" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="bCost" Type="Double" />
+    <Property Name="id" Type="Int64" />
+    <Property Name="dID" Type="Int32" />
+    <Property Name="bOriginArea" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="bDestArea" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="bOriginCost" Type="Double" />
+    <Property Name="bDestCost" Type="Double" />
+    <Property Name="status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Trackings" Relationship="Self.FK_Tracking_booking" FromRole="booking" ToRole="Tracking" />
+    <NavigationProperty Name="siteuser" Relationship="Self.FK_userID" FromRole="booking" ToRole="siteuser" />
+  </EntityType>
+  <EntityType Name="deliveryMan">
+    <Key>
+      <PropertyRef Name="dID" />
+    </Key>
+    <Property Name="dID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="dFirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="dLastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="dPhoneNo" Type="Int32" />
+    <Property Name="dSalary" Type="Int32" />
+    <Property Name="dAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Trackings" Relationship="Self.FK_Tracking_deliveryMen" FromRole="deliveryMen" ToRole="Tracking" />
+  </EntityType>
+  <EntityType Name="Feedback">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="comm" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="userID" Type="Int64" />
+    <Property Name="userName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="siteuser" Relationship="Self.FK_Feedback_siteuser" FromRole="Feedback" ToRole="siteuser" />
+  </EntityType>
+  <EntityType Name="siteuser">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="emailid" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="password" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="usertype" Type="Int32" />
+    <NavigationProperty Name="bookings" Relationship="Self.FK_userID" FromRole="siteuser" ToRole="booking" />
+    <NavigationProperty Name="Feedbacks" Relationship="Self.FK_Feedback_siteuser" FromRole="siteuser" ToRole="Feedback" />
+  </EntityType>
+  <EntityType Name="Tracking">
+    <Key>
+      <PropertyRef Name="trackiingID" />
+    </Key>
+    <Property Name="trackiingID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="bID" Type="Int32" />
+    <Property Name="diD" Type="Int32" />
+    <NavigationProperty Name="booking" Relationship="Self.FK_Tracking_booking" FromRole="Tracking" ToRole="booking" />
+    <NavigationProperty Name="deliveryMan" Relationship="Self.FK_Tracking_deliveryMen" FromRole="Tracking" ToRole="deliveryMen" />
+  </EntityType>
+  <Association Name="FK_Tracking_booking">
+    <End Role="booking" Type="Self.booking" Multiplicity="0..1" />
+    <End Role="Tracking" Type="Self.Tracking" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="booking">
+        <PropertyRef Name="bID" />
+      </Principal>
+      <Dependent Role="Tracking">
+        <PropertyRef Name="bID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_userID">
+    <End Role="siteuser" Type="Self.siteuser" Multiplicity="0..1" />
+    <End Role="booking" Type="Self.booking" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="siteuser">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="booking">
+        <PropertyRef Name="id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tracking_deliveryMen">
+    <End Role="deliveryMen" Type="Self.deliveryMan" Multiplicity="0..1" />
+    <End Role="Tracking" Type="Self.Tracking" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="deliveryMen">
+        <PropertyRef Name="dID" />
+      </Principal>
+      <Dependent Role="Tracking">
+        <PropertyRef Name="diD" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Feedback_siteuser">
+    <End Role="siteuser" Type="Self.siteuser" Multiplicity="0..1" />
+    <End Role="Feedback" Type="Self.Feedback" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="siteuser">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Feedback">
+        <PropertyRef Name="userID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Courier_Management_SystemEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="AreaInfoes" EntityType="Self.AreaInfo" />
+    <EntitySet Name="bookings" EntityType="Self.booking" />
+    <EntitySet Name="deliveryMen" EntityType="Self.deliveryMan" />
+    <EntitySet Name="Feedbacks" EntityType="Self.Feedback" />
+    <EntitySet Name="siteusers" EntityType="Self.siteuser" />
+    <EntitySet Name="Trackings" EntityType="Self.Tracking" />
+    <AssociationSet Name="FK_Tracking_booking" Association="Self.FK_Tracking_booking">
+      <End Role="booking" EntitySet="bookings" />
+      <End Role="Tracking" EntitySet="Trackings" />
+    </AssociationSet>
+    <AssociationSet Name="FK_userID" Association="Self.FK_userID">
+      <End Role="siteuser" EntitySet="siteusers" />
+      <End Role="booking" EntitySet="bookings" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tracking_deliveryMen" Association="Self.FK_Tracking_deliveryMen">
+      <End Role="deliveryMen" EntitySet="deliveryMen" />
+      <End Role="Tracking" EntitySet="Trackings" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Feedback_siteuser" Association="Self.FK_Feedback_siteuser">
+      <End Role="siteuser" EntitySet="siteusers" />
+      <End Role="Feedback" EntitySet="Feedbacks" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

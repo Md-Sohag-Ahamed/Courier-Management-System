@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="Courier_Management_SystemEntities">
+    <EntitySetMapping Name="AreaInfoes">
+      <EntityTypeMapping TypeName="Model.AreaInfo">
+        <MappingFragment StoreEntitySet="AreaInfo">
+          <ScalarProperty Name="aAreaID" ColumnName="aAreaID" />
+          <ScalarProperty Name="aAreaName" ColumnName="aAreaName" />
+          <ScalarProperty Name="aCost" ColumnName="aCost" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="bookings">
+      <EntityTypeMapping TypeName="Model.booking">
+        <MappingFragment StoreEntitySet="booking">
+          <ScalarProperty Name="bID" ColumnName="bID" />
+          <ScalarProperty Name="bOriginFirstName" ColumnName="bOriginFirstName" />
+          <ScalarProperty Name="bOriginLastName" ColumnName="bOriginLastName" />
+          <ScalarProperty Name="bOriginAddress" ColumnName="bOriginAddress" />
+          <ScalarProperty Name="bOriginPhoneNo" ColumnName="bOriginPhoneNo" />
+          <ScalarProperty Name="bDestFirstName" ColumnName="bDestFirstName" />
+          <ScalarProperty Name="bDestLastName" ColumnName="bDestLastName" />
+          <ScalarProperty Name="bDestAddress" ColumnName="bDestAddress" />
+          <ScalarProperty Name="bDestPhoneNo" ColumnName="bDestPhoneNo" />
+          <ScalarProperty Name="bWeight" ColumnName="bWeight" />
+          <ScalarProperty Name="bDescription" ColumnName="bDescription" />
+          <ScalarProperty Name="bTye" ColumnName="bTye" />
+          <ScalarProperty Name="bCost" ColumnName="bCost" />
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="dID" ColumnName="dID" />
+          <ScalarProperty Name="bOriginArea" ColumnName="bOriginArea" />
+          <ScalarProperty Name="bDestArea" ColumnName="bDestArea" />
+          <ScalarProperty Name="bOriginCost" ColumnName="bOriginCost" />
+          <ScalarProperty Name="bDestCost" ColumnName="bDestCost" />
+          <ScalarProperty Name="status" ColumnName="status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="deliveryMen">
+      <EntityTypeMapping TypeName="Model.deliveryMan">
+        <MappingFragment StoreEntitySet="deliveryMen">
+          <ScalarProperty Name="dID" ColumnName="dID" />
+          <ScalarProperty Name="dFirstName" ColumnName="dFirstName" />
+          <ScalarProperty Name="dLastName" ColumnName="dLastName" />
+          <ScalarProperty Name="dPhoneNo" ColumnName="dPhoneNo" />
+          <ScalarProperty Name="dSalary" ColumnName="dSalary" />
+          <ScalarProperty Name="dAddress" ColumnName="dAddress" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Feedbacks">
+      <EntityTypeMapping TypeName="Model.Feedback">
+        <MappingFragment StoreEntitySet="Feedback">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="comm" ColumnName="comm" />
+          <ScalarProperty Name="userID" ColumnName="userID" />
+          <ScalarProperty Name="userName" ColumnName="userName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="siteusers">
+      <EntityTypeMapping TypeName="Model.siteuser">
+        <MappingFragment StoreEntitySet="siteuser">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="emailid" ColumnName="emailid" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="usertype" ColumnName="usertype" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Trackings">
+      <EntityTypeMapping TypeName="Model.Tracking">
+        <MappingFragment StoreEntitySet="Tracking">
+          <ScalarProperty Name="trackiingID" ColumnName="trackiingID" />
+          <ScalarProperty Name="bID" ColumnName="bID" />
+          <ScalarProperty Name="diD" ColumnName="diD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
